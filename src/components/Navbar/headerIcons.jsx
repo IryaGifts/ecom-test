@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
 import CartSidebar from "../SideBars/CartSidebar";
+import { IconButton } from "@mui/material";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const NavIcons = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -51,10 +54,13 @@ const NavIcons = () => {
         )}
       </div>
       <div className="relative">
-        <FaUser
-          className="text-blue-900 text-xl cursor-pointer"
+        <IconButton
+          aria-label="cart"
+          className=" text-xl cursor-pointer"
           onClick={() => setAccountOpen(!accountOpen)}
-        />
+        >
+          <AccountCircleIcon />
+        </IconButton>
         {accountOpen && (
           <div
             ref={accountRef}
@@ -74,10 +80,13 @@ const NavIcons = () => {
         )}
       </div>
       <div className="relative">
-        <FaShoppingCart
+        <IconButton
+          aria-label="cart"
           className="text-blue-900 text-xl cursor-pointer"
           onClick={() => setCartOpen(!cartOpen)}
-        />
+        >
+          <ShoppingCartOutlinedIcon />
+        </IconButton>
         {cartItems > 0 && (
           <span className="absolute -top-1 -right-1 text-xs bg-red-600 text-white rounded-full px-1">
             {cartItems}
