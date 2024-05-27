@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
+import SearchIcon from "@mui/icons-material/Search";
 import CartSidebar from "../SideBars/CartSidebar";
 import { IconButton } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -36,10 +36,13 @@ const NavIcons = () => {
   return (
     <div className="flex items-center space-x-4">
       <div className="relative">
-        <FaSearch
+        <IconButton
           className="text-blue-900 text-xl cursor-pointer"
           onClick={() => setSearchOpen(!searchOpen)}
-        />
+        >
+          <SearchIcon />
+        </IconButton>
+
         {searchOpen && (
           <div
             ref={searchRef}

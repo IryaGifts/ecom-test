@@ -6,7 +6,7 @@ import NavLinks from "./NavLinks";
 
 const Navbar = () => {
   const announcements = [
-    "announcement-1",
+    "Hurry Up! It is 40% Discount on Jackets.",
     "announcement-2",
     "announcement-3",
     "announcement-4",
