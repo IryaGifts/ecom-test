@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function CartSidebar() {
+  const [cartItems, setCartItems] = useState(0)
   return (
     <div>CartSidebar
         {cartItems === 0 && ( 

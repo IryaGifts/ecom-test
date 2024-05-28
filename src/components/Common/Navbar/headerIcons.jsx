@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import CartSidebar from "../SideBars/CartSidebar";
+import CartSidebar from "../../Sections/SideBars/CartSidebar";
 import { IconButton } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import { Link } from "react-router-dom";
 
 const NavIcons = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -103,6 +105,13 @@ const NavIcons = () => {
             <CartSidebar />
           </div>
         )}
+      </div>
+      <div className="relative">
+        <Link to="/Seller-Dashboard">
+          <IconButton className="text-blue-900 text-xl cursor-pointer">
+            <DashboardIcon />
+          </IconButton>
+        </Link>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 // Navbar.jsx
 import React from "react";
-import AnnouncementBar from "../AnnouncementBar/AnnouncementBar";
+import AnnouncementBar from "./AnnouncementBar/AnnouncementBar";
 import HeaderIcons from "./headerIcons";
 import NavLinks from "./NavLinks";
 

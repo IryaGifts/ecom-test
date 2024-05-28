@@ -48,44 +48,24 @@ function openSmartObject() {
     return true;
 }
 
-// Function to fit the smart object content to the full height of the document while centering it
-function fitContentToFullHeight(smartObjectDoc) {
+// Function to fit the smart object content to the full width and height of the document
+function fitContentToFullWidthAndHeight(smartObjectDoc) {
     try {
-        var docWidth = smartObjectDoc.width;
-        var docHeight = smartObjectDoc.height;
-        var contentWidth = smartObjectDoc.activeLayer.bounds[2] - smartObjectDoc.activeLayer.bounds[0];
-        var contentHeight = smartObjectDoc.activeLayer.bounds[3] - smartObjectDoc.activeLayer.bounds[1];
+        // Ensure the active layer is selected
+        smartObjectDoc.activeLayer = smartObjectDoc.layers[0];
 
-        // Check if content dimensions are valid
-        if (contentWidth <= 0 || contentHeight <= 0) {
-            alert("Error: Smart object content dimensions are invalid.");
-            return false;
-        }
-
-        var scaleFactor = docHeight / contentHeight * 100;
-        var newWidth = (contentWidth * scaleFactor) / 100;
-
-        // Check if new width exceeds document width
-        if (newWidth > docWidth) {
-            scaleFactor = docWidth / contentWidth * 100;
-            var newHeight = (contentHeight * scaleFactor) / 100;
-
-            // Check if new height exceeds document height
-            if (newHeight > docHeight) {
-                alert("Error: Resizing to full height would result in exceeding document dimensions.");
-                return false;
-            }
-
-            smartObjectDoc.activeLayer.resize(newWidth, newHeight, AnchorPosition.MIDDLECENTER);
-        } else {
-            smartObjectDoc.activeLayer.resize(scaleFactor, scaleFactor, AnchorPosition.MIDDLECENTER);
-        }
+        var docWidth = smartObjectDoc.width.as('px');
+        var docHeight = smartObjectDoc.height.as('px');
+        
+        // Resize the smart object layer to fit the full width and height
+        smartObjectDoc.resizeImage(UnitValue(docWidth, 'px'), UnitValue(docHeight, 'px'), null, ResampleMethod.BICUBIC);
     } catch (e) {
-        alert("Error fitting content to full height: " + e.message);
+        alert("Error fitting content to full width and height: " + e.message + "\n\nScript by Aman Sharma");
         return false;
     }
     return true;
 }
+
 
 // Function to save the document as JPEG
 function saveDocumentAsJPEG(doc, outputFileName) {
@@ -115,6 +95,29 @@ function openPDF(pdfFile) {
         alert("Error opening PDF file: " + e.message + "\n\nScript by Aman Sharma");
         return null;
     }
+}
+
+// Function to reset the transformations of the smart object layer
+function resetSmartObjectTransformations(layer) {
+    try {
+        var idTransform = stringIDToTypeID("transform");
+        var desc = new ActionDescriptor();
+        var ref = new ActionReference();
+        ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+        desc.putReference(charIDToTypeID("null"), ref);
+        var idFreeTransformCenterState = stringIDToTypeID("freeTransformCenterState");
+        var idFreeTransformCenter = stringIDToTypeID("freeTransformCenter");
+        desc.putEnumerated(idFreeTransformCenterState, idFreeTransformCenter, idFreeTransformCenter);
+        desc.putEnumerated(stringIDToTypeID("FTCS"), charIDToTypeID("QCSt"), charIDToTypeID("Qcsa"));
+        desc.putBoolean(stringIDToTypeID("adjustPos"), true);
+        desc.putUnitDouble(charIDToTypeID("Wdth"), charIDToTypeID("#Prc"), 100.000000);
+        desc.putUnitDouble(charIDToTypeID("Hght"), charIDToTypeID("#Prc"), 100.000000);
+        executeAction(idTransform, desc, DialogModes.NO);
+    } catch (e) {
+        alert("Error resetting smart object transformations: " + e.message + "\n\nScript by Aman Sharma");
+        return false;
+    }
+    return true;
 }
 
 // Main function to process the mockup and design files
@@ -161,6 +164,9 @@ function processMockups() {
 
             mockupDoc.activeLayer = smartObjectLayer;
 
+            // Reset transformations before editing the smart object
+            if (!resetSmartObjectTransformations(smartObjectLayer)) break;
+
             if (!openSmartObject()) break;
 
             if (designFiles[i].name.match(/\.pdf$/i)) {
@@ -171,11 +177,11 @@ function processMockups() {
                 pdfDoc.close(SaveOptions.DONOTSAVECHANGES);
                 app.activeDocument.paste();
                 var smartObjectDoc = app.activeDocument;
-                if (!fitContentToFullHeight(smartObjectDoc)) break;
+                if (!fitContentToFullWidthAndHeight(smartObjectDoc)) break;
             } else {
                 if (!replaceSmartObjectContent(designFiles[i])) break;
                 var smartObjectDoc = app.activeDocument;
-                if (!fitContentToFullHeight(smartObjectDoc)) break;
+                if (!fitContentToFullWidthAndHeight(smartObjectDoc)) break;
             }
 
             smartObjectDoc.close(SaveOptions.SAVECHANGES);
