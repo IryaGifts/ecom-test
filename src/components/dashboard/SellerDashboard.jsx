@@ -4,11 +4,13 @@ import { TextField, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNavbarItems } from '../../redux/slices/navbarSlice';
 import axios from 'axios';
+import NavLinks from '../Common/Navbar/NavLinks';
+
 
 const SellerDashboard = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.navbar.items);
-  const [navbarItems, setNavbarItemsState] = useState(items);
+  const [navbarItems, setNavbarItemsState] = useState(items || []);
 
   useEffect(() => {
     axios.get('/api/navbar').then((response) => {
@@ -33,16 +35,9 @@ const SellerDashboard = () => {
     <div>
       <Typography variant="h4" gutterBottom>Seller Dashboard</Typography>
       <Typography variant="h5" gutterBottom>Navbar Items</Typography>
-      {navbarItems.map((item, index) => (
-        <TextField
-          key={index}
-          value={item}
-          onChange={(event) => handleNavbarInputChange(index, event)}
-          label={`Item ${index + 1}`}
-          fullWidth
-          margin="normal"
-        />
-      ))}
+            {/* Pass navbarItems data to NavLinks component */}
+            <NavLinks navbarItems={navbarItems} />
+
       <Button variant="contained" color="primary" onClick={handleUpdateNavbar}>
         Update Navbar
       </Button>

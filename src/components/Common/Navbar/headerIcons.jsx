@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import CartSidebar from "../../Sections/SideBars/CartSidebar";
-import { IconButton } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -48,13 +48,9 @@ const NavIcons = () => {
         {searchOpen && (
           <div
             ref={searchRef}
-            className="absolute right-0 mt-2 w-64 bg-white border rounded-md shadow-lg"
+            className=" absolute right-0 mt-2 w-64 bg-white border rounded-md shadow-lg"
           >
-            <input
-              type="text"
-              className="w-full px-4 py-2 border-none focus:outline-none"
-              placeholder="Search..."
-            />
+            <TextField className="m-4" label="search..." variant="outlined"></TextField>
           </div>
         )}
       </div>

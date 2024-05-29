@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 
-const HeroSlider = () => {
+const HeroSlider = ({ height = "72vh" }) => {
   const isMobile = useMediaQuery("(max-width:480px");
 
   const settings = {
@@ -51,7 +51,7 @@ const HeroSlider = () => {
         <Box
           key={index}
           sx={{
-            height: "72vh",
+            height: height,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
