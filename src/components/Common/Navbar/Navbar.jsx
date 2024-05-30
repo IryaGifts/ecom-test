@@ -16,7 +16,7 @@ const Navbar = () => {
     <>
       <AnnouncementBar announcements={announcements} />
 
-      <nav className="bg-white bg-opacity-75 py-4 sticky top-0">
+      <nav className="bg-white bg-opacity-75 py-4 sticky top-0 z-50">
         <div className="container mx-auto flex justify-around items-center">
           {/* Logo or brand */}
           <a href="#" className="text-black text-lg font-bold">

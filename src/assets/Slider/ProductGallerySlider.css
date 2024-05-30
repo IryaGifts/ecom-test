@@ -1,0 +1,29 @@
+/* Slider.css */
+.slider-container {
+  position: relative;
+}
+
+/* Customize the position of the dots */
+.slick-dots {
+  position: absolute;
+  bottom: 20px; /* Adjust this value as needed to position the dots */
+  width: 100%;
+  text-align: center;
+}
+
+/* Optional: Customize dot styles */
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 0;
+}
+
+.slick-dots li button {
+  /* font-size: 10px; */
+  color: #000; /* Customize dot color */
+  opacity: 0.5;
+}
+
+.slick-dots li.slick-active button {
+  opacity: 1;
+}
