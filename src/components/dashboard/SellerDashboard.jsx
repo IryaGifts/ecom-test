@@ -40,7 +40,7 @@ const SellerDashboard = () => {
             {/* Pass navbarItems data to NavLinks component */}
             <NavLinks navbarItems={navbarItems} />
 
-      <Button variant="contained" color="primary" onClick={handleUpdateNavbar}>
+      <Button variant="contained" color="primary" onClick={handleUpdateNavbar}  >
         Update Navbar
       </Button>
       <NavbarSetting/>

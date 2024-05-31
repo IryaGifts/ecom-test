@@ -8,7 +8,7 @@ function HeaderLower() {
       {/* <div className="bg-slate-100 w-full p-1  m-0">
         <NavLinks />
       </div> */}
-      <div className="w-full px-3 flex justify-center">
+      <div className="w-full px-3 flex justify-center ">
       <HeaderMenu/>
       </div>
     </>

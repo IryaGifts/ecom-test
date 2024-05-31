@@ -12,7 +12,7 @@ function HeaderUpper() {
         Your Brand
       </a>
       <div className="flex w-full max-w-2xl items-center space-x-2">
-        <Input type="search" placeholder="Search..." />
+        <Input type="search" placeholder="Search..." className="bg-opacity-75" />
         <Button>
           <SearchIcon />
         </Button>
