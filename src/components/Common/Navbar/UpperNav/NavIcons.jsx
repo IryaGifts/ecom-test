@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import CartSidebar from "../../Sections/SideBars/CartSidebar";
-import { IconButton, TextField } from "@mui/material";
+import CartSidebar from "../../../Sections/SideBars/CartSidebar";
+import { Badge, IconButton, TextField } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Link } from "react-router-dom";
+import ThemeToggle from "../../../ThemeToggle";
 
 const NavIcons = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -86,13 +87,16 @@ const NavIcons = () => {
           className="text-blue-900 text-xl cursor-pointer"
           onClick={() => setCartOpen(!cartOpen)}
         >
+          <Badge badgeContent={cartItems} color="primary" max={99}>
+
           <ShoppingCartOutlinedIcon />
+          </Badge>
         </IconButton>
-        {cartItems > 0 && (
+        {/* {cartItems > 0 && (
           <span className="absolute -top-1 -right-1 text-xs bg-red-600 text-white rounded-full px-1">
             {cartItems}
           </span>
-        )}
+        )} */}
         {cartOpen && (
           <div
             ref={cartRef}
@@ -109,6 +113,7 @@ const NavIcons = () => {
           </IconButton>
         </Link>
       </div>
+      <ThemeToggle/>
     </div>
   );
 };

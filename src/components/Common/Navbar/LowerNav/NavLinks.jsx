@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function NavLinks() {
-  return (
-    <ul className="flex space-x-4">
+  return (<>
+    <ul className="flex justify-around ">
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -19,6 +19,7 @@ function NavLinks() {
               </a>
             </li>
           </ul>
+  </>
   )
 }
 

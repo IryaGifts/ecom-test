@@ -10,6 +10,7 @@ import ProductPage from "./Pages/ProductPage";
 import SellerDashboard from "./components/dashboard/SellerDashboard";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
   return (

@@ -1,8 +1,8 @@
 // Navbar.jsx
 import React from "react";
 import AnnouncementBar from "./AnnouncementBar/AnnouncementBar";
-import HeaderIcons from "./headerIcons";
-import NavLinks from "./NavLinks";
+import HeaderLower from "./LowerNav/HeaderLower";
+import HeaderUpper from "./UpperNav/HeaderUpper";
 
 const Navbar = () => {
   const announcements = [
@@ -16,15 +16,9 @@ const Navbar = () => {
     <>
       <AnnouncementBar announcements={announcements} />
 
-      <nav className="bg-white bg-opacity-75 py-4 sticky top-0 z-50">
-        <div className="container mx-auto flex justify-around items-center">
-          {/* Logo or brand */}
-          <a href="#" className="text-black text-lg font-bold">
-            Your Brand
-          </a>
-          <NavLinks />
-          <HeaderIcons />
-        </div>
+      <nav className="bg-white bg-opacity-75 pt-4 sticky top-0 z-50">
+       <HeaderUpper/>
+        <HeaderLower/>
       </nav>
       <div className="thin-line"> </div>
     </>

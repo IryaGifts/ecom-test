@@ -4,7 +4,9 @@ import { TextField, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNavbarItems } from '../../redux/slices/navbarSlice';
 import axios from 'axios';
-import NavLinks from '../Common/Navbar/NavLinks';
+import NavLinks from '../Common/Navbar/LowerNav/NavLinks';
+import ProductForm from './ProductForm';
+import NavbarSetting from './NavbarSetting';
 
 
 const SellerDashboard = () => {
@@ -41,6 +43,9 @@ const SellerDashboard = () => {
       <Button variant="contained" color="primary" onClick={handleUpdateNavbar}>
         Update Navbar
       </Button>
+      <NavbarSetting/>
+      <ProductForm/>
+
     </div>
   );
 };
