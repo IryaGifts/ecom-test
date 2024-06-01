@@ -7,40 +7,21 @@ import axios from 'axios';
 import NavLinks from '../Common/Navbar/LowerNav/NavLinks';
 import ProductForm from './ProductForm';
 import NavbarSetting from './NavbarSetting';
+import DashboardHeader from './Dashboard-Components/DashboardHeader';
+import DashboardSidebar from './Dashboard-Components/DashboardSidebar';
+import DashboardContent from './Dashboard-Components/DashboardContent';
 
 
 const SellerDashboard = () => {
-  const dispatch = useDispatch();
-  const items = useSelector((state) => state.navbar.items);
-  const [navbarItems, setNavbarItemsState] = useState(items || []);
-
-  useEffect(() => {
-    axios.get('/api/navbar').then((response) => {
-      setNavbarItemsState(response.data.items);
-    });
-  }, []);
-
-  const handleUpdateNavbar = () => {
-    axios.put('/api/navbar', { items: navbarItems }).then((response) => {
-      dispatch(setNavbarItems(response.data.items));
-      alert('Navbar items updated successfully!');
-    });
-  };
-
-  const handleNavbarInputChange = (index, event) => {
-    const newNavbarItems = [...navbarItems];
-    newNavbarItems[index] = event.target.value;
-    setNavbarItemsState(newNavbarItems);
-  };
-
   return (
     <div>
-      <Typography variant="h4" gutterBottom>Seller Dashboard</Typography>
-      <Typography variant="h5" gutterBottom>Navbar Items</Typography>
-            {/* Pass navbarItems data to NavLinks component */}
-            <NavLinks navbarItems={navbarItems} />
+      <DashboardHeader/>
+<div className="flex w-full">
+  <DashboardSidebar/>
+  <DashboardContent/>
+</div>
 
-      <Button variant="contained" color="primary" onClick={handleUpdateNavbar}  >
+      <Button variant="contained" color="primary"  >
         Update Navbar
       </Button>
       <NavbarSetting/>
