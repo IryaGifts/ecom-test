@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-function DashboardContent() {
+const DashboardContent = ({ activeTab }) => {
   return (
-    <div className='w-5/6 bg-slate-100	p-7'>DashboardContent</div>
-  )
-}
+    <div className="flex-1 p-7 bg-slate-100 w-5/7">
+      {activeTab === 'home' && <div>Home</div>}
+      {activeTab === 'orders' && <div>Orders</div>}
+      {activeTab === 'products' && <div>Products</div>}
+      {activeTab === 'customers' && <div>Customers</div>}
+      {activeTab === 'analytics' && <div>Analytics</div>}
+      {activeTab === 'marketing' && <div>Marketing</div>}
+    </div>
+  );
+};
 
-export default DashboardContent
+export default DashboardContent;

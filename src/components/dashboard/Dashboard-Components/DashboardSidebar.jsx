@@ -13,17 +13,22 @@ import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
 import ForwardToInboxRoundedIcon from "@mui/icons-material/ForwardToInboxRounded";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import CampaignRoundedIcon from "@mui/icons-material/CampaignRounded";
+import RateReviewRoundedIcon from '@mui/icons-material/RateReviewRounded';
+import { Button } from "../../@/components/ui/button";
+import { Link } from "react-router-dom";
 
 function DashboardSidebar() {
   return (
+
+    
     <div className="w-1/6 bg-slate-200	">
       {/* DashboardSidebar */}
 
       {/* THE mAIN LIST STARTS HERE */}
 
-      <div className="mainList p-2">
+      <div className="mainList p-2 mb-2">
         <ul>
-          <li className="flex items-center hover:bg-slate-100 rounded-md cursor-pointer gap-2 font-medium p-1">
+          <li  className="flex items-center hover:bg-slate-100 rounded-md cursor-pointer gap-2 font-medium p-1">
             <HomeIcon fontSize="small" />
             Home
           </li>
@@ -61,8 +66,8 @@ function DashboardSidebar() {
       {/* THE SALES CHANNEL LIST STARTS HERE */}
 
       <div className="salesChannelsList">
-        <Box className="flex items-center justify-between p-2">
-          <Typography variant="h6" fontSize={18}>
+        <Box className="flex items-center justify-between p-2 cursor-pointer ">
+          <Typography variant="h6" fontSize={18} fontWeight={600}>
             Sales Channels
           </Typography>
           <ArrowForwardIosRoundedIcon fontSize="small" />
@@ -90,12 +95,18 @@ function DashboardSidebar() {
       {/* THE APP LIST STARTS HERE */}
 
       <div className="appsList">
-        <Box className="flex items-center justify-between p-2">
+        <Box className="flex items-center justify-between p-2 cursor-pointer">
           <Typography variant="h6" fontSize={18}>
             Apps
           </Typography>
           <ArrowForwardIosRoundedIcon fontSize="small" />
         </Box>
+        <ul>
+        <li className="flex items-center hover:bg-slate-100 rounded-md cursor-pointer gap-2 font-medium p-1">
+            <RateReviewRoundedIcon fontSize="small" />
+            Reviews
+          </li>
+        </ul>
       </div>
     </div>
   );
