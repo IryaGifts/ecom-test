@@ -14,8 +14,6 @@ import { Button } from "../@/components/ui/button";
 
 const SellerDashboard = () => {
 
-  const [activeTab, setActiveTab] =useState(Home)
-
   return (
     <div>
       <DashboardHeader />

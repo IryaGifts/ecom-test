@@ -1,33 +1,36 @@
-import { useState } from "react";
-
-import "./App.css";
-import Navbar from "./components/Common/Navbar/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Footer from "./components/Common/Footer/Footer";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
+import Customerview from "./components/UI-Layouts/Customerview"; 
+import SellerView from "./components/UI-Layouts/SellerView";
+
 import HomePage from "./Pages/HomePage";
 import CollectionPage from "./Pages/CollectionPage";
 import ProductPage from "./Pages/ProductPage";
 import SellerDashboard from "./components/dashboard/SellerDashboard";
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import ThemeToggle from "./components/ThemeToggle";
+
+import "./App.css";
 
 function App() {
   return (
-    <>
-      <Provider store={store}>
-        <Router>
-          <Navbar />
-          <Routes>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          {/* Customer View Routes */}
+          <Route element={<Customerview />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/Collections" element={<CollectionPage />} />
-            <Route path="/Product" element={<ProductPage />} />
-            <Route path="/Seller-Dashboard" element={<SellerDashboard />} />
-          </Routes>
-          <Footer />
-        </Router>
-      </Provider>
-    </>
+            <Route path="/collections" element={<CollectionPage />} />
+            <Route path="/product" element={<ProductPage />} />
+          </Route>
+
+          {/* Seller View Routes */}
+          <Route element={<SellerView />}>
+            <Route path="/seller-dashboard" element={<SellerDashboard />} />
+          </Route>
+        </Routes>
+      </Router>
+    </Provider>
   );
 }
 
