@@ -13,13 +13,18 @@ import DashboardContent from "./Dashboard-Components/DashboardContent";
 import { Button } from "../@/components/ui/button";
 
 const SellerDashboard = () => {
+  const [activeTab, setActiveTab] = useState('home');
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
 
   return (
     <div>
       <DashboardHeader />
       <div className="flex w-full">
-        <DashboardSidebar />
-        <DashboardContent />
+      <DashboardSidebar onTabChange={handleTabChange} activeTab={activeTab} />
+        <DashboardContent activeTab={activeTab} />
       </div>
       <Button variant="ghost">ghost button</Button>
       <Button variant="contained" color="primary">
