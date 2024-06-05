@@ -14,18 +14,31 @@ import {
   AvatarFallback,
 } from "../../@/components/ui/avatar";
 import { Link } from "react-router-dom";
-import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded';
+import ArrowOutwardRoundedIcon from "@mui/icons-material/ArrowOutwardRounded";
+import { Input } from "../../@/components/ui/input";
+import { SearchIcon } from "lucide-react";
+import { Button } from "../../@/components/ui/button";
 
 function DashboardHeader() {
   return (
-    <div className="bg-black flex justify-between px-5 ">
+    <div className="bg-black flex justify-between px-5 items-center">
       <Typography variant="h5" p={1} color={"white"}>
         Seller Dashboard
       </Typography>
 
+      <div className="flex gap-0 p-0 w-1/2 items-center bg-white rounded-lg">
+        <Input
+          placeholder={"Search..."}
+          className=" w-full h-full py-0 px-1 h-7 m-0 border-0"
+        />
+        <Button className="bg-white m-0 h-full p-0">
+          <SearchIcon fontWeight={700}/>
+        </Button>
+      </div>
+      {/* The Avatar Circle Starts Here  */}
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <Avatar >
+          <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
@@ -38,7 +51,11 @@ function DashboardHeader() {
           <DropdownMenuItem>Team</DropdownMenuItem>
           <DropdownMenuItem>Subscription</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem><Link to="/">Visit the store <ArrowOutwardRoundedIcon fontSize="small"/></Link></DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link to="/">
+              Visit the store <ArrowOutwardRoundedIcon fontSize="small" />
+            </Link>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

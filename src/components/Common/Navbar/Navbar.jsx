@@ -18,7 +18,7 @@ const Navbar = () => {
 
       <nav className="bg-white bg-opacity-75 pt-4 sticky top-0 z-50">
        <HeaderUpper/>
-        <HeaderLower/>
+        {/* <HeaderLower/> */}
       </nav>
       <div className="thin-line"> </div>
     </>

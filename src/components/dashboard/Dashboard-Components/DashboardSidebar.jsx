@@ -21,7 +21,7 @@ const DashboardSidebar = ({ onTabChange, activeTab }) => {
   };
 
   return (
-    <div className="w-1/6 bg-slate-200 h-full fixed">
+    <div className="w-1/6 bg-slate-200 h-full fixed z-10">
       <div className="mainList p-2 mb-2">
         <ul>
           <li className={getClassNames('home')} onClick={() => onTabChange('home')}>

@@ -39,7 +39,7 @@ const NavIcons = () => {
   return (
     <>
       <div className="flex items-center space-x-4">
-        <div className="relative">
+        {/* <div className="relative">
           <IconButton
             className="text-blue-900 text-xl cursor-pointer"
             onClick={() => setSearchOpen(!searchOpen)}
@@ -59,7 +59,7 @@ const NavIcons = () => {
               ></TextField>
             </div>
           )}
-        </div>
+        </div> */}
         <div className="relative">
           <IconButton
             aria-label="cart"
@@ -110,13 +110,13 @@ const NavIcons = () => {
             </div>
           )}
         </div>
-        <div className="relative">
+        {/* <div className="relative">
           <Link to="/Seller-Dashboard">
             <IconButton className="text-blue-900 text-xl cursor-pointer">
               <DashboardIcon />
             </IconButton>
           </Link>
-        </div>
+        </div> */}
         <ThemeToggle />
       </div>
 

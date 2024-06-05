@@ -7,7 +7,7 @@ function LoginButton() {
     <div>
         <Dialog>
             <DialogTrigger>LOGIN/SIGNUP</DialogTrigger>
-            <DialogContent>
+            <DialogContent className="p-0 w-auto max-w-sm">
                 <LoginForm/>
             </DialogContent>
         </Dialog>
