@@ -1,32 +1,38 @@
 // src/components/ProductGrid.jsx
 
-import React, { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
-import ProductSkeleton from "./ProductSkeleton";
-import Slider from "react-slick";
+import React, { useEffect, useState } from 'react';
+import ProductCard from './ProductCard';
+import ProductSkeleton from './ProductSkeleton';
+import Slider from 'react-slick';
+import { fetchProducts } from '../../../services/shopifyService';
+
 
 const ProductGrid = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Simulating fetching data from backend server
-    setTimeout(() => {
-      fetch("https://api.example.com/products") // Replace with your actual API endpoint
-        .then((response) => response.json())
-        .then((data) => {
-          setProducts(data);
-          setLoading(false);
-        })
-        .catch((error) => console.error("Error fetching product data:", error));
-    }, 2000);
+    const fetchShopifyProducts = async () => {
+      try {
+        const products = await fetchProducts();
+        setProducts(products);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching products from Shopify:', error);
+        setError('Failed to fetch products. Please try again later.');
+        setLoading(false);
+      }
+    };
+
+    fetchShopifyProducts();
   }, []);
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 9,
+    slidesToShow: 3,
     slidesToScroll: 3,
     responsive: [
       {
@@ -35,38 +41,38 @@ const ProductGrid = () => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true,
-        },
+          dots: true
+        }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 1,
-        },
-      },
-    ],
+          initialSlide: 1
+        }
+      }
+    ]
   };
 
   return (
-    <>
-      <div className="container mx-auto my-8">
-        {loading ? (
-          <div className="flex flex-wrap justify-center ">
-            {Array.from(new Array(5)).map((_, index) => (
-              <ProductSkeleton key={index} />
-            ))}
-          </div>
-        ) : (
-          <Slider {...settings}>
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </Slider>
-        )}
-      </div>
-    </>
+    <div className="container mx-auto my-8">
+      {loading ? (
+        <div className="flex flex-wrap justify-center">
+          {Array.from(new Array(3)).map((_, index) => (
+            <ProductSkeleton key={index} />
+          ))}
+        </div>
+      ) : error ? (
+        <div className="text-center text-red-500">{error}</div>
+      ) : (
+        <Slider {...settings}>
+          {products.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </Slider>
+      )}
+    </div>
   );
 };
 

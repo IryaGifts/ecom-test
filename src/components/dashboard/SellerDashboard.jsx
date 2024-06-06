@@ -22,6 +22,7 @@ const SellerDashboard = () => {
   return (
     <div>
       <DashboardHeader />
+      <div className="px-5 items-center flex h-12"></div>
       <div className="flex w-full">
       <DashboardSidebar onTabChange={handleTabChange} activeTab={activeTab} />
         <DashboardContent activeTab={activeTab} />

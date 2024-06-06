@@ -21,7 +21,7 @@ import { Button } from "../../@/components/ui/button";
 
 function DashboardHeader() {
   return (
-    <div className="bg-black flex justify-between px-5 items-center">
+    <div className="bg-black flex justify-between px-5 items-center fixed top-0 w-full z-10">
       <Typography variant="h5" p={1} color={"white"}>
         Seller Dashboard
       </Typography>
@@ -31,7 +31,7 @@ function DashboardHeader() {
           placeholder={"Search..."}
           className=" w-full h-full py-0 px-1 h-7 m-0 border-0"
         />
-        <Button className="bg-white m-0 h-full p-0">
+        <Button className="bg-white m-0 h-full p-0 mx-2 text-black hover:text-white">
           <SearchIcon fontWeight={700}/>
         </Button>
       </div>

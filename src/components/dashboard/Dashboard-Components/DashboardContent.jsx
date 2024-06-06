@@ -14,6 +14,7 @@ const DashboardContent = ({ activeTab }) => {
       {activeTab === 'content' && <div>Content</div>}
       {activeTab === 'marketing' && <div>Marketing</div>}
       {activeTab === 'discounts' && <div>Discounts</div>}
+      {activeTab === 'settings' && <div>Settings</div>}
     </div>
   );
 };
